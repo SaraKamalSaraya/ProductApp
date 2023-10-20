@@ -1,0 +1,14 @@
+*{
+    box-sizing: border-box;
+}
+header{
+    margin: 0px 80px;
+    text-decoration: none;
+    
+}
+footer p{
+    text-align: center;
+}
+.Home{
+font-size: 20px;
+}

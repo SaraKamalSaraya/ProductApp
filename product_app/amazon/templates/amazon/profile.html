@@ -1,0 +1,36 @@
+{% extends 'amazon/layouts/base.html' %} {% load static %}
+
+<!-- Content -->
+{% block content %}
+<div
+  class="d-flex justify-content-between align-items-center"
+>
+  <div>
+    <h5>name: {{product.name}}</h5>
+    <h5>price: {{product.price}} EG</h5>
+    <h5>instock: {{product.instock}}</h5>
+    <h5>description: {{product.description}}</h5>
+    <h5>Category: {{product.category}}</h5>
+    <h5>Owner: {{product.owner}}</h5>
+  </div>
+  <div>
+    <div class="cardSection d-flex justify-content-between">
+      <div class="card" style="width: 18rem">
+        <img
+          src="{{product.get_image_url}}"
+          class="card-img-top"
+          width="200"
+          height="300"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <a href="{% url 'amazon.amazon'%}" class="btn btn-primary"
+            >Back to Products</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

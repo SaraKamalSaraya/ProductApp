@@ -1,0 +1,50 @@
+{% extends 'amazon/layouts/base.html' %} 
+{% load static %} 
+
+<!-- Content -->
+{% block content %}
+{% if user.id %}
+  <a href="{% url 'amazon.addProduct' %}" class="btn btn-primary">
+    Add product
+  </a>
+{% else %}
+  <button href="{% url 'amazon.addProduct' %}" class="btn btn-primary" disabled>
+    Add product
+  </button>
+{% endif %}
+
+<div class="d-flex justify-content-between flex-wrap">
+  {% for product in products %}
+  <div class="card my-2" style="width: 18rem">
+    <img
+      src="{{product.get_image_url}}"
+      class="card-img-top"
+      width="200"
+      height="300"
+      alt="..."
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{product.name}}</h5>
+      <a href="{{ product.get_profile_url }}" class="btn btn-primary">
+        Show Details
+      </a>
+      {% if user.id and product.owner == user.username %}
+        <a href="{{ product.get_delete_url }}" class="btn btn-primary">
+          Delete
+        </a>
+        <a href="{{ product.get_edit_url }}" class="btn btn-primary">
+          Edit
+        </a>
+      {% else %}
+        <button href="{{ product.get_delete_url }}" class="btn btn-primary" disabled>
+          Delete
+        </button>
+        <button href="{{ product.get_edit_url }}" class="btn btn-primary" disabled>
+        Edit
+        </button>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

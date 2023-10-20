@@ -1,0 +1,27 @@
+{% extends 'amazon/layouts/base.html' %} 
+{% load static %}
+
+<!-- Content -->
+{% block content %}
+<center><h1>Categories</h1></center>
+<div class="d-flex justify-content-between flex-wrap">
+  
+  {% for category in categories %}
+  <div class="card my-2" style="width: 18rem">
+    <img
+      src="{{category.get_image_url}}"
+      class="card-img-top"
+      width="200"
+      height="300"
+      alt="..."
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{category.name}}</h5>
+      <a href="{{ category.get_profile_url }}" class="btn btn-primary">
+        Show Details
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

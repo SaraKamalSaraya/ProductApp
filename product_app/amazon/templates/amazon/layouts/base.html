@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon</title>
+    <link rel="stylesheet" href="{% static 'amazon/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrapp/css/bootstrap.css' %}" />
+  </head>
+
+  <body>
+    <header class="d-flex justify-content-between align-items-center">
+      <div>
+        <ul class="nav align-items-center">
+          <li class="nav-item Home">
+            <a
+              class="nav-link active text-dark"
+              aria-current="page"
+              href="{% url 'amazon.amazon' %}"
+              >Amazon</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="{% url 'amazon.categories' %}"
+              >Categories</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="{% url 'amazon.contactus' %}"
+              >Contact us</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="{% url 'amazon.link' %}">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="{% url 'amazon.aboutus' %}"
+              >About us</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex">
+        {% if user.id %}
+        <a class="nav-link text-dark" href="{% url 'profile' %}"><span class="mx-2">User: {{user}}</span></a>
+        <span class="mx-2">
+          <a class="nav-link text-dark" href="{% url 'logout' %}"
+            >Logout</a></span>
+        {% else %}
+          <span class="mx-2">
+            <a class="nav-link text-dark" href="{% url 'login' %}"
+            >Login</a></span>
+            <span class="mx-2">
+              <a class="nav-link text-dark" href="{% url 'accounts.Register' %}"
+              >Register</a></span>            
+        {% endif %}
+      </div>
+      
+      <form class="input-group w-25" method="GET" action="{% url 'amazon.search' %}">
+        <input type="text" name="searched" class="form-control" placeholder="Search here ...">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </form>
+    </header>
+
+    <div style="margin: 30px 120px;">
+      {% block content %}
+      
+      {% endblock %}
+    </div>
+
+    <footer>
+      <p>Copyrights</p>
+    </footer>
+
+    <script src="{% static 'bootstrapp/js/bootstrap.js'%}"></script>
+  </body>
+</html>

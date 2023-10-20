@@ -1,0 +1,39 @@
+{% extends 'amazon/layouts/base.html' %} 
+{% load static %}
+
+<!-- Content -->
+{% block content %}
+<div
+  class="d-flex justify-content-between align-items-center"
+>
+  
+  <div>
+    <div class="cardSection d-flex justify-content-between">
+      <div class="card" style="width: 18rem">
+        <img
+          src="{{category.get_image_url}}"
+          class="card-img-top"
+          width="200"
+          height="300"
+          alt="..."
+        />
+        <h5>name: {{category.name}}</h5>
+        <h5>description: {{category.description}}</h5>
+        <div class="card-body">
+          <a href="{% url 'amazon.categories'%}" class="btn btn-primary"
+            >Back to categories</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <center><h4>Products in this category:</h4></center>
+    {% for product in products %}
+      <div class="d-flex flex-column">
+        <h5>{{product.name}}</h5>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

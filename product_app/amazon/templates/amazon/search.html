@@ -1,0 +1,31 @@
+{% extends 'amazon/layouts/base.html' %} {% load static %}
+
+<!-- Content -->
+{% block content %} {% if searched %}
+<center><h3>Search for {{searched}} ...</h3></center>
+<br />
+
+{% for result in results %}
+<div class="d-flex justify-content-between">
+  <div class="card" style="width: 18rem">
+    <img
+      src="{{ result.get_image_url }}"
+      class="card-img-top"
+      width="200"
+      height="300"
+      alt="..."
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{result.name}}</h5>
+      <a href="{% url 'amazon.profile' result.id %}" class="btn btn-primary">
+        Show Details
+      </a>
+      <a href="{% url 'amazon.delete' result.id %}" class="btn btn-primary">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
+{% endfor %} {% else %}
+<center><h3>Not found</h3></center>
+{% endif %} {% endblock %}
